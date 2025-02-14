@@ -8,7 +8,7 @@ import {
 
 const app = express();
 app.use(express.json());
-const port = 3000;
+const port = process.env.PORT;
 
 app.post("/search", async (req: Request, res: Response) => {
   const query = req.body.question as string;
@@ -46,5 +46,5 @@ app.get("/search", async (req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running`);
 });
