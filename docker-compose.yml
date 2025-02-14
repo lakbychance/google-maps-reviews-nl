@@ -1,0 +1,28 @@
+name: google-maps-search-api
+
+services:
+  node:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - typesense
+    environment:
+      - SERP_API_KEY=${SERP_API_KEY}
+      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+      - TYPESENSE_HOST=${TYPESENSE_HOST}
+      - TYPESENSE_PORT=${TYPESENSE_PORT}
+      - TYPESENSE_PROTOCOL=${TYPESENSE_PROTOCOL}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GOOGLE_MAPS_CONTRIBUTOR_ID=${GOOGLE_MAPS_CONTRIBUTOR_ID}
+
+  typesense:
+    image: typesense/typesense:27.1
+    restart: on-failure
+    ports:
+      - "8108:8108"
+    volumes:
+      - ./typesense-data:/data
+    environment:
+      - TYPESENSE_API_KEY=${TYPESENSE_API_KEY}
+    command: "--data-dir /data --api-key=${TYPESENSE_API_KEY}"
