@@ -85,6 +85,7 @@ export async function getContributorReviews(
     ...(params.hl && { hl: params.hl }),
     ...(params.next_page_token && { next_page_token: params.next_page_token }),
     ...(params.num && { num: params.num.toString() }),
+    no_cache: "true",
   });
 
   const response = await fetch(
