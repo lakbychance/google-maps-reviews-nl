@@ -1,2 +1,4 @@
 .env
 typesense-data
+nodejs-service/node_modules
+nodejs-service/dist
